@@ -3,8 +3,8 @@ name: Test
 
 on:
   workflow_run:
-    workflows:
-      - preflight testing
+    workflows: ["preflight testing"]
+#      - preflight testing
     types:
       - completed
 
