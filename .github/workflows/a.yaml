@@ -1,5 +1,5 @@
 ---
-name: Preflight testing
+name: preflight testing
 
 on:
   - pull_request
