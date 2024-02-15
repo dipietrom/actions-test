@@ -1,0 +1,20 @@
+name: print log
+
+on: [pull_request]
+
+jobs:
+  one:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB: ${{ toJson(github) }}
+        run: echo "$GITHUB"
+
+      - name: print base commit of this branch
+        run: |
+          task=$(curl ${{ github.event.pull_request._links.commits.href }})
+          #task=$(curl ${{ github.event.pull_request._links.commits.href }} | jq .[0].commit.message -r | grep "^Bug: T[0-9]*$" | head -1 | awk '{print $2}')
+          echo "${task}"
+          message=$(echo ${task} | jq .[0].commit.message -r)
+          echo "${message}"
